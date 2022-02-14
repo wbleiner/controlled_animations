@@ -14,6 +14,15 @@ class _Exercicio1State extends State<Exercicio1>
   late Animation _ovalTransform;
   late Animation _alignmentAnimation;
 
+  void _onTap() {
+    if (_controller.status == AnimationStatus.dismissed ||
+        _controller.status == AnimationStatus.reverse) {
+      _controller.forward();
+    } else {
+      _controller.reverse();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -52,13 +61,7 @@ class _Exercicio1State extends State<Exercicio1>
       ),
       body: Center(
         child: GestureDetector(
-          onTap: () {
-            if (_controller.isCompleted) {
-              _controller.reverse();
-            } else {
-              _controller.forward();
-            }
-          },
+          onTap: _onTap,
           child: Center(
             child: Align(
               alignment: _alignmentAnimation.value,
